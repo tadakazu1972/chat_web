@@ -1,0 +1,18 @@
+#/etc/systemd/system/
+
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=azureuser
+Group=www-data
+WorkingDirectory=/home/azureuser/chat_web
+ExecStart=/home/azureuser/.local/bin/gunicorn --bind unix:/run/gunicorn/socket chat_web:app
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

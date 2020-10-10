@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>チャットボット</title>
+</head>
+<body>
+  <script src="https://riversun.github.io/chatux/chatux.min.js"></script>
+  <script>
+    const chatux = new ChatUx();
+    const initParam =
+      {
+        renderMode: 'auto',
+        api: {
+          endpoint: 'http://osakachat01.japanwest.cloudapp.azure.com/post',
+          method: 'GET',
+          dataType: 'jsonp'
+        },
+        bot: {
+          botPhoto: null,
+          humanPhoto: null,
+          widget: {
+            sendLabel: '送信',
+            placeHolder: '質問事項を入力してください'
+          }
+        },
+        window: {
+          title: '特別区制度Q＆A',
+          infoUrl: 'https://www.city.osaka.lg.jp/fukushutosuishin/page/0000489447.html'
+        }
+      };
+    chatux.init(initParam)
+    chatux.start(true)
+  </script>
+</body>
+</html>
